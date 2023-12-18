@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="16"
+   height="16"
+   version="1.1"
+   id="svg226"
+   sodipodi:docname="protobuf.svg"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs230" />
+  <sodipodi:namedview
+     id="namedview228"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="30.454005"
+     inkscape:cx="9.5553935"
+     inkscape:cy="13.167398"
+     inkscape:window-width="1983"
+     inkscape:window-height="1314"
+     inkscape:window-x="2260"
+     inkscape:window-y="198"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg226" />
+  <style
+     type="text/css"
+     id="style220">.icon-canvas-transparent{opacity:0;fill:#F6F6F6;} .icon-vs-out{opacity:0;fill:#F6F6F6;} .icon-vs-bg{fill:#656565;} .icon-vs-fg{fill:#F0EFF1;}</style>
+  <path
+     class="icon-canvas-transparent"
+     d="M16 16h-16v-16h16v16z"
+     id="canvas" />
+  <path
+     class="icon-vs-out"
+     d="M4 15c-.97 0-2-.701-2-2v-10c0-1.299 1.03-2 2-2h6.061l3.939 3.556v8.444c0 .97-.701 2-2 2h-8z"
+     id="outline" />
+  <g
+     id="g17491"
+     transform="matrix(0.12141521,0,0,0.12141521,1.6024143,0.89326736)"
+     style="fill:#656565;fill-opacity:1">
+    <title
+       id="title17481">protobuf.js</title>
+    <path
+       d="M 51.038,0 0,29.833 0.021,89.333 51.055,119 l 51,-30.167 0.054,-58.666 z M 97.61,86.277 51.054,113.814 4.467,86.734 4.448,32.418 51.039,5.185 97.658,32.723 Z"
+       fill="#171c1e"
+       id="border"
+       style="fill:#656565;fill-opacity:1" />
+    <polygon
+       points="91.811,83.15 91.721,49.529 67.825,63.597 67.812,97.283 "
+       fill="#1ea8ff"
+       id="blue_front"
+       style="fill:#8c8c8c;fill-opacity:1" />
+    <polygon
+       points="91.721,49.529 67.825,63.597 67.812,97.283 56.695,90.821 56.785,58.97 82.002,43.789 "
+       fill="#50bfff"
+       id="blue_side"
+       style="fill:#656565;fill-opacity:1" />
+    <polygon
+       points="78.741,41.718 52.8,57.367 52.829,91.787 46.798,95.33 46.777,54.64 78.73,35.486 "
+       fill="#97ff27"
+       id="green_front"
+       style="fill:#8c8c8c;fill-opacity:1" />
+    <polygon
+       points="78.73,35.486 46.777,54.64 46.798,95.33 34.877,88.403 34.859,48.505 68.089,29.2 "
+       fill="#c2ff72"
+       id="green_side"
+       style="fill:#656565;fill-opacity:1" />
+    <polygon
+       points="64.764,27.088 30.699,47.063 30.699,89.983 24.738,93.451 24.853,43.677 64.764,19.575 "
+       fill="#ff274b"
+       id="red_front"
+       style="fill:#8c8c8c;fill-opacity:1" />
+    <polygon
+       points="10.809,35.674 10.801,85.302 24.82,93.451 24.853,43.677 64.805,19.575 51.736,11.831 "
+       fill="#ff5c77"
+       id="red_side"
+       style="fill:#656565;fill-opacity:1" />
+  </g>
+</svg>
