@@ -1,8 +1,10 @@
 /* TEAM */
-Owner: Jean-Etienne MARTIN
-Site: http://www.jet-martin.com
-Twitter: @j_et_martin
-Location: Paris, France
+Owner: Apicurio
+Site: https://www.apicur.io/
 
 /* THANKS */
 
+Contributor: Jean-Etienne MARTIN
+Site: http://www.jet-martin.com
+Twitter: @j_et_martin
+Location: Paris, France

@@ -2,17 +2,16 @@
 	"name": "apicurio",
 	"displayName": "Apicurio",
 	"description": "Explore Apicurio registry content.",
-	"version": "0.1.0",
-	"publisher": "jetmartin",
+	"version": "0.1.1",
+	"publisher": "apicurio",
 	"author": {
-		"name": "J-Et. Martin",
-		"email": "code@jet-martin.com",
-		"url": "http://www.jet-martin.com"
+		"name": "Apicurio",
+		"url": "https://www.apicur.io/"
 	},
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/jetmartin/apicurio.git"
+		"url": "https://github.com/Apicurio/apicurio-registry-vscode-plugin.git"
 	},
 	"engines": {
 		"vscode": "^1.57.0"
