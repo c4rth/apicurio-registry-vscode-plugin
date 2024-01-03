@@ -8,7 +8,7 @@
 		"name": "Apicurio",
 		"url": "https://www.apicur.io/"
 	},
-	"license": "MIT",
+	"license": "Apache-2.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Apicurio/apicurio-registry-vscode-plugin.git"
