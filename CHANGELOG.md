@@ -6,7 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased][Unreleased]
 
-## [v1.0.0][v0.1.1] - 2023-01-04
+## [v1.0.1][v1.0.1] - 2023-01-04
+
+* [X] Fix README publication issues.
+
+## [v1.0.0][v1.0.0] - 2023-01-04
 
 * [X] Move to Apicurio Organization.
 
@@ -69,8 +73,9 @@ All notable changes to this project will be documented in this file.
 
 * [X] Basic Apicurio explorer.
 
-[unreleased]: https://github.com/jetmartin/Apicurio/apicurio-registry-vscode-plugin/v0.1.1...HEAD
-[v0.1.1]: https://github.com/Apicurio/apicurio-registry-vscode-plugin/compare/v0.1.0...v0.1.1
+[unreleased]: https://github.com/jetmartin/Apicurio/apicurio-registry-vscode-plugin/v1.0.1...HEAD
+[v1.0.1]: https://github.com/Apicurio/apicurio-registry-vscode-plugin/compare/v1.0.0...v1.0.1
+[v1.0.0]: https://github.com/Apicurio/apicurio-registry-vscode-plugin/compare/v0.1.0...v1.0.0
 [v0.1.0]: https://github.com/jetmartin/apicurio/compare/v0.0.4...v0.1.0
 [v0.0.4]: https://github.com/jetmartin/apicurio/compare/v0.0.3...v0.0.4
 [v0.0.3]: https://github.com/jetmartin/apicurio/compare/v0.0.2...v0.0.3

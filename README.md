@@ -1,9 +1,10 @@
 # Apicurio Registry Explorer
 
-[Current Version][marketplace]
- [GitHub tag (latest SemVer)][github]
-[Open-vsx downloads][openvsx]
-[Apache-2.0 license][license]
+[![Current Version](https://img.shields.io/visual-studio-marketplace/v/apicurio.apicurio-registry-explorer.svg?color=emerald&label=Visual%20Studio%20Marketplace&logo=visual-studio-code&logoColor=blue&style=flat)][marketplace]
+![Install Count](https://img.shields.io/visual-studio-marketplace/i/apicurio.apicurio-registry-explorer.svg?color=emerald&style=flat)
+![downloads Count](https://img.shields.io/visual-studio-marketplace/d/apicurio.apicurio-registry-explorer.svg?color=emerald&style=flat)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/apicurio/apicurio-registry-vscode-plugin.svg?color=emerald&label=release&logoColor=white&logo=github&labelColor=grey)][github]
+![license](https://img.shields.io/badge/license-Apache_2-brightgreen.svg)
 
 ![Apicurio](/resources/apicurio_icon.png)
 
@@ -97,9 +98,9 @@ Kindly contributed from the original project to the Apicurio organization by [je
 [new issue]: https://github.com/Apicurio/apicurio-registry-vscode-plugin/issues/new
 [Changelog]: https://github.com/Apicurio/apicurio-registry-vscode-plugin/blob/main/CHANGELOG.md
 [humanstxt]: https://github.com/Apicurio/apicurio-registry-vscode-plugin/blob/main/humans.txt
-[license]: https://github.com/Apicurio/apicurio-registry-vscode-plugin/blob/main/LICENSE.txt
-[marketplace]: https://marketplace.visualstudio.com/items?itemName=apicurio.registry
-[openvsx]: https://open-vsx.org/extension/apicurio/registry
-[openvsx-dt]: https://img.shields.io/open-vsx/dt/apicurio/registry
+[license]: https://github.com/Apicurio/apicurio-registry-vscode-plugin/blob/main/LICENSE
+[marketplace]: https://marketplace.visualstudio.com/items?itemName=apicurio.apicurio-registry-explorer
+[openvsx]: https://open-vsx.org/extension/apicurio/apicurio-registry-explorer
+[openvsx-dt]: https://img.shields.io/open-vsx/dt/apicurio/apicurio-registry-explorer
 [command palette]: https://code.visualstudio.com/Docs/editor/codebasics#_command-palette
 [install extensions]: https://code.visualstudio.com/docs/editor/extension-gallery#_install-an-extension
