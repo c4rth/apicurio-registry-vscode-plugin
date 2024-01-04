@@ -6,13 +6,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased][Unreleased]
 
-## [v0.1.1] - 2023-12-09
+## [v1.0.0][v0.1.1] - 2023-01-04
 
 * [X] Move to Apicurio Organization.
 
 ## Before integration to Apicurio organization
 
-## [v0.1.0] - 2022-04-29
+## [v0.1.0][v0.1.0] - 2022-04-29
 
 ### Added
 

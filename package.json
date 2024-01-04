@@ -1,8 +1,8 @@
 {
-	"name": "apicurio",
-	"displayName": "Apicurio",
+	"name": "apicurio-registry-explorer",
+	"displayName": "Apicurio registry",
 	"description": "Explore Apicurio registry content.",
-	"version": "0.1.1",
+	"version": "1.0.0",
 	"publisher": "apicurio",
 	"author": {
 		"name": "Apicurio",

@@ -1,11 +1,9 @@
-# Apicurio
+# Apicurio Registry Explorer
 
-[![Current Version](https://img.shields.io/visual-studio-marketplace/v/apicurio.registry.svg?color=emerald&label=Visual%20Studio%20Marketplace&logo=visual-studio-code&logoColor=blue&style=flat)
-![Install Count](https://img.shields.io/visual-studio-marketplace/i/apicurio.registry.svg?color=emerald&style=flat)
-![downloads Count](https://img.shields.io/visual-studio-marketplace/d/apicurio.registry.svg?color=emerald&style=flat)][marketplace]
- [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/Apicurio/apicurio-registry-vscode-plugin.svg?color=emerald&label=release&logoColor=white&logo=github&labelColor=grey)][github]
-[![Open-vsx downloads](https://img.shields.io/open-vsx/dt/apicurio/registry)][openvsx]
-[![Apache-2.0 license](https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg)][license]
+[Current Version][marketplace]
+ [GitHub tag (latest SemVer)][github]
+[Open-vsx downloads][openvsx]
+[Apache-2.0 license][license]
 
 ![Apicurio](/resources/apicurio_icon.png)
 
