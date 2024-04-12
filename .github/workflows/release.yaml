@@ -112,6 +112,7 @@ jobs:
               # if: ${{ !inputs.pre-release }}
               run: |
                   npm version --no-git-tag-version ${{ inputs.next-version }}
+                  git add -u
                   git commit -m "Update to next development version ${{ inputs.next-version }}"
 
             - name: Push
