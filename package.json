@@ -2,7 +2,7 @@
     "name": "apicurio-registry-explorer",
     "displayName": "Apicurio Registry Explorer",
     "description": "Explore Apicurio Registry content.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "publisher": "Apicurio",
     "author": {
         "name": "Apicurio",
