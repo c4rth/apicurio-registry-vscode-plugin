@@ -52,7 +52,7 @@ export class ApicurioMetasExplorerProvider implements vscode.TreeDataProvider<Ve
 
     async _readMetas(group: string, id: string, version?: string): Promise<MetaEntry[]> {
         const path = _.tools.getQueryPath(this.currentArtifact, 'meta');
-        const children: any = await _.tools.query(path);
+        const children: any = (await _.tools.query(path)).body;
         const result: MetaEntry[] = [];
         for (const i in children) {
             const met: MetaEntry = {
@@ -156,7 +156,7 @@ export class ApicurioMetasExplorerProvider implements vscode.TreeDataProvider<Ve
     async _registryStateUpdate(state): Promise<MetaEntry[]> {
         const path = this._getCurrentStatePath();
         const body = { state: state };
-        const result: any = await _.tools.query(path, 'PUT', body);
+        const result: any = (await _.tools.query(path, 'PUT', body)).body;
         return Promise.resolve(result);
     }
 
@@ -167,7 +167,7 @@ export class ApicurioMetasExplorerProvider implements vscode.TreeDataProvider<Ve
     }
     async _getEditableMetas(): Promise<MetaEntry[]> {
         const query = _.tools.getQueryPath(this.currentArtifact, 'meta');
-        const atrifactMetas: any = await _.tools.query(query);
+        const atrifactMetas: any = (await _.tools.query(query)).body;
         const editableMetas: any = {};
         if (atrifactMetas.name) {
             editableMetas.name = atrifactMetas.name;
@@ -191,7 +191,7 @@ export class ApicurioMetasExplorerProvider implements vscode.TreeDataProvider<Ve
         const path = _.tools.getQueryPath(this.currentArtifact, 'meta');
         const newProperty = { [metaType]: updatedValue };
         const body = Object.assign({}, editableMetas, newProperty);
-        const result: any = await _.tools.query(path, 'PUT', body);
+        const result: any = (await _.tools.query(path, 'PUT', body)).body;
         return Promise.resolve(result);
     }
 
@@ -288,10 +288,10 @@ export class ApicurioMetasExplorerProvider implements vscode.TreeDataProvider<Ve
         const currentMetaValue: any = editableMetas[metaType]
             ? editableMetas[metaType]
             : metaType == 'labels'
-              ? []
-              : metaType == 'properties'
-                ? {}
-                : '';
+                ? []
+                : metaType == 'properties'
+                    ? {}
+                    : '';
         switch (metaType) {
             // Manage labels
             case 'labels':

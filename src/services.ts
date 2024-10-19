@@ -38,7 +38,7 @@ class Services {
     private client: RegistryClient;
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    private constructor() {}
+    private constructor() { }
 
     public getSettings() {
         return new Settings(); // TODO: We need to create a new instance in case the settings change.

@@ -75,7 +75,7 @@
                 "icon": "$(add)"
             },
             {
-                "command": "apicurioVersionsExplorer.deleteArtifact",
+                "command": "apicurioExplorer.deleteArtifact",
                 "title": "Delete artifact",
                 "icon": "$(notebook-delete-cell)"
             },
@@ -83,6 +83,11 @@
                 "command": "apicurioVersionsExplorer.openVersion",
                 "title": "Open",
                 "icon": "$(open-preview)"
+            },
+            {
+                "command": "apicurioVersionsExplorer.deleteVersion",
+                "title": "Delete",
+                "icon": "$(trash)"
             },
             {
                 "command": "apicurioVersionsExplorer.reverseDisplay",
@@ -132,15 +137,15 @@
                     "when": "view == apicurioExplorer"
                 },
                 {
+                    "command": "apicurioExplorer.deleteArtifact",
+                    "when": "view == apicurioExplorer"
+                },
+                {
                     "command": "apicurioVersionsExplorer.reverseDisplay",
                     "when": "view == apicurioVersionsExplorer"
                 },
                 {
                     "command": "apicurioVersionsExplorer.addVersion",
-                    "when": "view == apicurioVersionsExplorer"
-                },
-                {
-                    "command": "apicurioVersionsExplorer.deleteArtifact",
                     "when": "view == apicurioVersionsExplorer"
                 },
                 {
@@ -157,6 +162,16 @@
                 {
                     "command": "apicurioVersionsExplorer.openVersion",
                     "when": "view == apicurioVersionsExplorer",
+                    "group": "inline@1"
+                },
+                {
+                    "command": "apicurioVersionsExplorer.deleteVersion",
+                    "when": "view == apicurioVersionsExplorer",
+                    "group": "inline@2"
+                },
+                {
+                    "command": "apicurioExplorer.deleteArtifact",
+                    "when": "view == apicurioExplorer",
                     "group": "inline"
                 }
             ]

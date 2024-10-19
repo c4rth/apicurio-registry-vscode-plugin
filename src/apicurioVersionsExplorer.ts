@@ -1,7 +1,7 @@
 'use strict';
 
 import * as vscode from 'vscode';
-import { SearchEntry, VersionEntry, CurrentArtifact } from './interfaces';
+import { SearchEntry, VersionEntry, CurrentArtifact, ApicurIoResponse } from './interfaces';
 import { ApicurioTools } from './tools';
 import * as mime from 'mime-types';
 import { isString } from './utils';
@@ -42,7 +42,7 @@ export class ApicurioVersionsExplorerProvider implements vscode.TreeDataProvider
 
     async _getLatestVersion(artifact): Promise<string[]> {
         const path = _.tools.getQueryPath(artifact, 'versions');
-        const children: any = await _.tools.query(path);
+        const children: any = (await _.tools.query(path)).body;
         // As versionning is not necessary symver or predictable, return the most recent version.
         // The Apicurio API response is ordered by date, so the most recent is the latest.
         const version: string[] = children.versions[children.versions.length - 1].version;
@@ -89,10 +89,10 @@ export class ApicurioVersionsExplorerProvider implements vscode.TreeDataProvider
 
     // Delete version
 
-    async deleteArtifact(deleteVersion?: boolean) {
+    async deleteVersion(artifact: SearchEntry) {
         // Confirm box
         const confirm = await vscode.window.showQuickPick(_.tools.getLists('confirm'), {
-            title: `Are you shure to delete '${this.currentArtifact.group}/${this.currentArtifact.id}'`,
+            title: `Are you sure to delete '${artifact.groupId}/${artifact.id}/${artifact.version}'`,
             canPickMany: false,
         });
         if (confirm != 'yes') {
@@ -106,10 +106,9 @@ export class ApicurioVersionsExplorerProvider implements vscode.TreeDataProvider
         if (irreversible != 'yes') {
             return Promise.resolve();
         }
-        const path = _.tools.getQueryPath(this.currentArtifact, 'delete');
+        const path = _.tools.getQueryPath({ group: artifact.groupId, id: artifact.id, version: artifact.version }, 'version');
         await _.tools.query(path, 'DELETE');
         // Refresh view.
-        vscode.commands.executeCommand('apicurioExplorer.refreshEntry');
         this._onDidChangeTreeData.fire(undefined);
         vscode.commands.executeCommand('apicurioMetasExplorer.refresh');
     }
@@ -135,12 +134,12 @@ export class ApicurioVersionsExplorerProvider implements vscode.TreeDataProvider
 
     // Read Artifact
 
-    readArtifact(group: string, id: string, version?: string): any | Thenable<any> {
+    readArtifact(group: string, id: string, version?: string): ApicurIoResponse | Thenable<ApicurIoResponse> {
         return this._readArtifact(group, id, version ? version : 'latest');
     }
-    async _readArtifact(group: string, id: string, version: string): Promise<any> {
+    async _readArtifact(group: string, id: string, version: string): Promise<ApicurIoResponse> {
         const path = _.tools.getQueryPath({ group: group, id: id, version: version });
-        const child: any = await _.tools.query(path, null, null, null, false);
+        const child = await _.tools.query(path, null, null, null, false);
         return Promise.resolve(child);
     }
 
@@ -152,55 +151,59 @@ export class ApicurioVersionsExplorerProvider implements vscode.TreeDataProvider
 
     async _getArtifactType(): Promise<string> {
         const path = _.tools.getQueryPath(this.currentArtifact, 'meta');
-        const child: any = await _.tools.query(path);
+        const child: any = (await _.tools.query(path)).body;
         return Promise.resolve(child.type);
     }
 
     async openVersion(artifact: vscode.Uri): Promise<any> {
         const tmp: string = JSON.stringify(artifact);
         const data: VersionEntry = JSON.parse(tmp);
-        let children: any = await this.readArtifact(data.groupId, data.id, data.version);
-        // @TODO manage other extentions if require for other formats.
-        let extention = '';
+        let response: ApicurIoResponse = await this.readArtifact(data.groupId, data.id, data.version);
+        let children: any = response.body;
+        // @TODO manage other extensions if require for other formats.
+        let extension = '';
         const artifactType = await this.getArtifactType();
         if (typeof children === 'object') {
-            children = JSON.stringify(children);
-            extention = 'json';
+            children = JSON.stringify(children.body);
+            extension = 'json';
         } else {
             switch (artifactType) {
                 case 'OPENAPI':
                 case 'ASYNCAPI':
                     // @FIXME : manage JSON vs YAML content type when Apicurio bug would be fixed.
-                    // extention = 'yml';
-                    extention = 'json';
+                    if (response.contentType === 'application/x-yaml') {
+                        extension = 'yml';
+                    } else {
+                        extension = 'json';
+                    }
                     break;
                 case 'AVRO':
-                    extention = 'avro';
+                    extension = 'avro';
                     break;
                 case 'GRAPHQL':
-                    extention = 'gql';
+                    extension = 'gql';
                     break;
                 case 'XML':
                 case 'XSD':
                 case 'WSDL':
-                    extention = 'xml';
+                    extension = 'xml';
                     break;
                 case 'PROTOBUF':
-                    extention = 'proto';
+                    extension = 'proto';
                     break;
                 case 'KCONNECT':
                 case 'JSON':
-                    extention = 'json';
+                    extension = 'json';
                     break;
                 default:
-                    extention = 'txt';
+                    extension = 'txt';
                     break;
             }
         }
 
         // Manage document
         const wsDirPath = this.getWorkspaceDirPath();
-        let fileName: string = `${data.groupId}--${data.id}--${data.version}.${extention}`;
+        let fileName: string = `${data.groupId}--${data.id}--${data.version}.${extension}`;
         if (isString(wsDirPath)) {
             fileName = `${wsDirPath}/${fileName}`;
         } else {
@@ -213,6 +216,7 @@ export class ApicurioVersionsExplorerProvider implements vscode.TreeDataProvider
                     e.edit((edit) => {
                         edit.insert(new vscode.Position(0, 0), children);
                     });
+                    e.revealRange(new vscode.Range(0, 0, 0, 0));
                 });
             },
             (error: any) => {
@@ -261,7 +265,7 @@ export class ApicurioVersionsExplorerProvider implements vscode.TreeDataProvider
 
     async _getVersions(group: string, id: string): Promise<VersionEntry[]> {
         const path = _.tools.getQueryPath(this.currentArtifact, 'versions');
-        const children: any = await _.tools.query(path);
+        const children: any = (await _.tools.query(path)).body;
         const result: VersionEntry[] = [];
         for (let i = 0; i < children.versions.length; i++) {
             const child: VersionEntry = {
@@ -329,15 +333,19 @@ export class ApicurioVersionsExplorer {
             treeDataProvider.refreshElement(element)
         );
         vscode.commands.registerCommand('apicurioVersionsExplorer.addVersion', () => treeDataProvider.addVersion());
-        vscode.commands.registerCommand('apicurioVersionsExplorer.deleteArtifact', (element) =>
-            treeDataProvider.deleteArtifact()
-        );
         vscode.commands.registerCommand('apicurioVersionsExplorer.reverseDisplay', () =>
             treeDataProvider.reverseDisplay()
         );
         vscode.commands.registerCommand('apicurioVersionsExplorer.openVersion', async (artifact) => {
             try {
                 await treeDataProvider.openVersion(artifact);
+            } catch (e) {
+                vscode.window.showErrorMessage(e);
+            }
+        });
+        vscode.commands.registerCommand('apicurioVersionsExplorer.deleteVersion', async (artifact) => {
+            try {
+                await treeDataProvider.deleteVersion(artifact);
             } catch (e) {
                 vscode.window.showErrorMessage(e);
             }

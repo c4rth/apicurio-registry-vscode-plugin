@@ -34,4 +34,9 @@ interface Search {
     propertyValue: string;
 }
 
-export { SearchEntry, VersionEntry, MetaEntry, CurrentArtifact, Search };
+interface ApicurIoResponse {
+    contentType: String,
+    body: String
+}
+
+export { SearchEntry, VersionEntry, MetaEntry, CurrentArtifact, Search, ApicurIoResponse };

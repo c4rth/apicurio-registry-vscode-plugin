@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as http from 'http';
 import * as https from 'https';
-import { CurrentArtifact } from './interfaces';
+import { CurrentArtifact, ApicurIoResponse } from './interfaces';
 import { isObject } from './utils';
 
 export class ApicurioTools {
@@ -75,6 +75,7 @@ export class ApicurioTools {
             case 'search':
                 path = `search/artifacts`;
                 break;
+            case 'version':
             default:
                 path = `groups/${artifact.group}/artifacts/${artifact.id}${artifact.version && artifact.version != 'latest' ? `/versions/${artifact.version}` : ``}`;
                 break;
@@ -108,8 +109,8 @@ export class ApicurioTools {
      * @param body object The optional request body
      * @returns http body
      */
-    public query(path: string, method?: string, body?: any, headers?: any, parse = true): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
+    public query(path: string, method?: string, body?: any, headers?: any, parse = true): Promise<ApicurIoResponse> {
+        return new Promise<ApicurIoResponse>((resolve, reject) => {
             const hhttpx = vscode.workspace.getConfiguration('apicurio.http').get('secure') ? https : http;
             const settings = this.getApicurioHttpSettings();
 
@@ -140,36 +141,36 @@ export class ApicurioTools {
                     switch (res.statusCode) {
                         case 204:
                             // Fix resolution issue for no body 204 (PUT) responses on Apicurio API
-                            resolve('');
+                            resolve({ contentType: '', body: ''});
                             break;
                         case 400:
                             // Fix resolution issue for 400 responses on Apicurio API
                             vscode.window.showErrorMessage('Apicurio : retrun a 400 error.');
-                            resolve('');
+                            resolve({ contentType: '', body: ''});
                             break;
                         case 401:
                             // Fix resolution issue for 401 responses on Apicurio API
                             vscode.window.showErrorMessage(
                                 'Apicurio Unauthorized : you have to login or grant more permissions.'
                             );
-                            resolve('');
+                            resolve({ contentType: '', body: ''});
                             break;
                         case 404:
                             // Fix resolution issue for 404 responses on Apicurio API
                             vscode.window.showErrorMessage('Apicurio : Not found.');
-                            resolve('');
+                            resolve({ contentType: '', body: ''});
                             break;
                         case 409:
                             // Fix resolution issue for 409 responses on Apicurio API
                             vscode.window.showErrorMessage('Apicurio : conflicts with existing data.');
-                            resolve('');
+                            resolve({ contentType: '', body: ''});
                             break;
                         default:
                             break;
                     }
                     if (res.statusCode < 200 || res.statusCode >= 300) {
                         vscode.window.showErrorMessage('Apicurio : retrun a ' + res.statusCode + ' status code.');
-                        resolve('');
+                        resolve({ contentType: '', body: ''});
                         return reject(new Error('statusCode=' + res.statusCode));
                     }
                     // cumulate data
@@ -192,7 +193,7 @@ export class ApicurioTools {
                         } else {
                             parsedData = Buffer.concat(body).toString();
                         }
-                        resolve(parsedData);
+                        resolve({ contentType: res.headers['content-type'], body: parsedData} );
                     });
                 }
             );

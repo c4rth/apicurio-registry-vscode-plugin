@@ -7,7 +7,7 @@ describe.skip('Test extension info', () => {
 
     let extension: ExtensionsViewItem;
 
-    before(async function() {
+    before(async function () {
         this.timeout(15000);
         const view = await (await new ActivityBar().getViewControl('Extensions'))?.openView();
         const extensions = await view?.getContent().getSection('Installed') as ExtensionsViewSection;

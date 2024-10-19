@@ -233,6 +233,30 @@ export class ApicurioExplorerProvider implements vscode.TreeDataProvider<SearchE
         this.onDidChangeTreeDataEmitter.fire();
     }
 
+    // Delete
+
+    async deleteArtifact(element: SearchEntry) {
+        const confirm = await vscode.window.showQuickPick(_.tools.getLists('confirm'), {
+            title: `Are you sure to delete '${element.groupId}/${element.id}'`,
+            canPickMany: false,
+        });
+        if (confirm != 'yes') {
+            return Promise.resolve();
+        }
+        // Confirm box
+        const irreversible = await vscode.window.showQuickPick(_.tools.getLists('confirm'), {
+            title: `This action is irreversible, continue ?`,
+            canPickMany: false,
+        });
+        if (irreversible != 'yes') {
+            return Promise.resolve();
+        }
+        const path = _.tools.getQueryPath({ group: element.groupId, id: element.id }, 'delete');
+        await _.tools.query(path, 'DELETE');
+        // Refresh view.
+        this.onDidChangeTreeDataEmitter.fire();
+    }
+
     // Search
 
     async search() {
@@ -315,6 +339,9 @@ export class ApicurioExplorer {
         vscode.commands.registerCommand('apicurioExplorer.refreshEntry', () => treeDataProvider.refresh());
         vscode.commands.registerCommand('apicurioExplorer.search', () => treeDataProvider.search());
         vscode.commands.registerCommand('apicurioExplorer.addArtifact', () => treeDataProvider.addArtifact());
+        vscode.commands.registerCommand('apicurioExplorer.deleteArtifact', (element) =>
+            treeDataProvider.deleteArtifact(element)
+        );
 
         //vscode.commands.registerCommand('apicurioExplorer.test', () => Services.get().test());
     }

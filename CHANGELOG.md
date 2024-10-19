@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased][Unreleased]
 
+- Move delete artifact to artifacts view 
+- Move delete version to versions view
+- Fix yaml extension when open version
+
 ## [v1.0.3][v1.0.3] - 2023-04-19
 
 -   Fix: Detect workspace location when previewing Apicurio Registry content.
